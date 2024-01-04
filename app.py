@@ -2,14 +2,13 @@ from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
-# Define a username and password for demonstration purposes
+# username and password
 valid_username = 'user'
 valid_password = 'password'
 
-# Sample domain records (initial data)
+# Sample domain records 
 domain_records = [
-    {'domain_type': 'A', 'name': 'examplegoogle.com', 'address': '127.0.0.1', 'other': 'description'},
-    # Add more records as needed
+    # Add as many as required
 ]
 
 
