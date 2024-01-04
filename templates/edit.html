@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Domain Record</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/insert">Insert</a></li>
+        </ul>
+    </nav>
+
+    <h1>Edit Domain Record</h1>
+
+    <form action="{{ url_for('edit', index=index) }}" method="POST">
+        <label for="domain_type">Type of Domain:</label>
+        <select name="domain_type" required>
+            <option value="A" {% if record['domain_type'] == 'A' %}selected{% endif %}>A (Address) Record</option>
+            <option value="AAAA" {% if record['domain_type'] == 'AAAA' %}selected{% endif %}>AAAA (IPv6 Address) Record</option>
+           
+        </select>
+
+        <label for="name">Name:</label>
+        <input type="text" name="name" value="{{ record['name'] }}" required>
+
+        <label for="address">Address:</label>
+        <input type="text" name="address" value="{{ record['address'] }}" required>
+
+        <label for="other">Other:</label>
+        <input type="text" name="other" value="{{ record['other'] }}">
+
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>
+

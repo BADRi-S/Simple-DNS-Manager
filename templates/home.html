@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        
+        h1 {
+            text-align: center;
+        }
+
+      
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">H0ME</a></li>
+            <li><a href="/insert">INSERT</a></li>
+            <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+        </ul>
+    </nav>
+    <br><br>
+    <h1>Domain Records</h1>
+
+    <form action="{{ url_for('home') }}" method="GET">
+        <label for="filter">Filter by Domain Type:</label>
+        <select name="filter" id="filter">
+            <option value="">All</option>
+            <option value="A">A (Address) Record</option>
+            <option value="AAAA">AAAA (IPv6 Address) Record</option>
+            <option value="CNAME">CNAME (Canonical Name) Record</option>
+            <option value="MX">MX (Mail Exchange) Record</option>
+            <option value="NS">NS (Name Server) Record</option>
+            <option value="PTR">PTR (Pointer) Record</option>
+            <option value="SOA">SOA (Start of Authority) Record</option>
+            <option value="SRV">SRV (Service) Record</option>
+            <option value="TXT">TXT (Text) Record</option>
+            <option value="DNSSEC">DNSSEC</option>
+        </select>
+        <button type="submit">Apply Filter</button>
+    </form>
+
+     <table>
+        <tr>
+            <th>Type of Domain</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Other</th>
+            <th>Actions</th>
+        </tr>
+        {% for record in records %}
+        <tr>
+            <td>{{ record['domain_type'] }}</td>
+            <td>{{ record['name'] }}</td>
+            <td>{{ record['address'] }}</td>
+            <td>{{ record['other'] }}</td>
+            <td>
+                <a href="{{ url_for('edit', index=loop.index0) }}">Edit</a>
+                <a href="{{ url_for('delete', index=loop.index0) }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+   
+
+</body>
+</html>
+

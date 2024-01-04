@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<style>
+    nav{
+        text-align:end;
+    }
+   
+</style>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="/insert">Insert</a></li>
+        </ul>
+    </nav>
+    <br><br><br>
+    <h1>INSERT DOMAIN RECORD </h1>
+    <br><br>
+    <form action="/insert" method="POST">
+        <label for="domain_type">Type of Domain:</label>
+        <select name="domain_type" required>
+            <option value="A">A (Address) Record</option>
+            <option value="AAAA">AAAA (IPv6 Address) Record</option>
+            <option value="CNAME">CNAME (Canonical Name) Record</option>
+            <option value="MX">MX (Mail Exchange) Record</option>
+            <option value="NS">NS (Name Server) Record</option>
+            <option value="PTR">PTR (Pointer) Record</option>
+            <option value="SOA">SOA (Start of Authority) Record</option>
+            <option value="SRV">SRV (Service) Record</option>
+            <option value="TXT">TXT (Text) Record</option>
+            <option value="DNSSEC">DNSSEC</option>
+        </select>
+
+        <label for="name">Name:</label>
+        <input type="text" name="name" required>
+
+        <label for="address">Address:</label>
+        <input type="text" name="address" required>
+
+        <label for="other">Other:</label>
+        <input type="text" name="other">
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+
